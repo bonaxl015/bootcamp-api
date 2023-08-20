@@ -1,0 +1,53 @@
+[
+  {
+    "_id": "63dd2c1f9489e350f0584817",
+    "careers": ["Web Development"],
+    "image": "https://assets.website-files.com/600e947088abe035d0238a33/601c0703e6494b699a59cc80_avion-logo.svg",
+    "housing": false,
+    "jobAssistance": true,
+    "jobGuarantee": false,
+    "acceptGcash": false,
+    "name": "Avion School",
+    "description": "Learn web development from senior software engineers, work on real-world projects, and get hired by 180+ of our partner companies.",
+    "website": "https://www.avionschool.com/",
+    "phone": "832123456",
+    "email": "customerservice@avionschool.com",
+    "address": "BGC, Taguig City",
+    "rating": 8,
+    "price": 80000
+  },
+  {
+    "_id": "63dd2c1f9489e350f0584818",
+    "careers": ["Web Development"],
+    "image": "https://assets.website-files.com/600e947088abe035d0238a33/601c0703e6494b699a59cc80_avion-logo.svg",
+    "housing": false,
+    "jobAssistance": true,
+    "jobGuarantee": false,
+    "acceptGcash": false,
+    "name": "Avion School 2",
+    "description": "Learn web development from senior software engineers, work on real-world projects, and get hired by 180+ of our partner companies.",
+    "website": "https://www.avionschool.com/",
+    "phone": "832123456",
+    "email": "customerservice@avionschool.com",
+    "address": "BGC, Taguig City",
+    "rating": 8,
+    "price": 80000
+  },
+  {
+    "_id": "63dd2c1f9489e350f0584819",
+    "careers": ["Web Development"],
+    "image": "https://assets.website-files.com/600e947088abe035d0238a33/601c0703e6494b699a59cc80_avion-logo.svg",
+    "housing": false,
+    "jobAssistance": true,
+    "jobGuarantee": false,
+    "acceptGcash": false,
+    "name": "Avion School 3",
+    "description": "Learn web development from senior software engineers, work on real-world projects, and get hired by 180+ of our partner companies.",
+    "website": "https://www.avionschool.com/",
+    "phone": "832123456",
+    "email": "customerservice@avionschool.com",
+    "address": "BGC, Taguig City",
+    "rating": 8,
+    "price": 80000
+  }
+]

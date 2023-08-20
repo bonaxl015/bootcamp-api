@@ -1,0 +1,102 @@
+[
+  {
+    "_id": "63dd2f78ea454659c48eb70c",
+    "title": "HTML and CSS",
+    "description": "Learn how to create HTML and CSS",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "beginner",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584817"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb70d",
+    "title": "JavaScript",
+    "description": "Learn JavaScript",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "intermediate",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584817"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb70e",
+    "title": "React",
+    "description": "Learn how to create React application",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "advance",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584817"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb70f",
+    "title": "Ruby",
+    "description": "Learn coding using Ruby language",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "intermediate",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584817"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb710",
+    "title": "Ruby on Rails",
+    "description": "Learn how to create APIs using Ruby on Rails",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "advance",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584817"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb711",
+    "title": "HTML and CSS",
+    "description": "Learn how to create HTML and CSS",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "beginner",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb712",
+    "title": "JavaScript",
+    "description": "Learn JavaScript",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "intermediate",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb713",
+    "title": "React",
+    "description": "Learn how to create React application",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "advance",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb714",
+    "title": "Ruby",
+    "description": "Learn coding using Ruby language",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "intermediate",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  },
+  {
+    "_id": "63dd2f78ea454659c48eb715",
+    "title": "Ruby on Rails",
+    "description": "Learn how to create APIs using Ruby on Rails",
+    "duration": "4 weeks",
+    "price": "10000",
+    "minimumSkill": "advance",
+    "scholarship": true,
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  }
+]

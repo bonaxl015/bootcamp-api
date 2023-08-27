@@ -5,8 +5,8 @@ const colors = require('colors')
 const errorHandler = require('./src/middleware/error-handler')
 
 // Route files
-const { bootcamps, courses } = require('./src/routes')
-const { BOOTCAMPS_URL, COURSES_URL } = require('./src/routes/api-url')
+const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
+const mainRoute = require('./src/routes/api')
 
 // Load env variables
 dotenv.config({ path: './config/config.env' })
@@ -20,8 +20,7 @@ const app = express()
 app.use(express.json())
 
 // Mount routers
-app.use(BOOTCAMPS_URL, bootcamps)
-app.use(COURSES_URL, courses)
+app.use(MAIN_PREFIX_URL, mainRoute)
 
 // Error handler
 app.use(errorHandler)

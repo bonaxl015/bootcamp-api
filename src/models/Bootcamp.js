@@ -82,4 +82,10 @@ BootcampSchema.pre('save', function(next) {
   next()
 })
 
+// Remove courses under specified bootcampId
+BootcampSchema.pre('remove', async function(next) {
+  await this.model('Course').deleteMany({ bootcampId: this._id })
+  next()
+})
+
 module.exports = mongoose.model('Bootcamp', BootcampSchema)

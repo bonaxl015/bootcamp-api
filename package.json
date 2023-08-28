@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "serve": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "seeder-import": "node seeder.js -import",
+    "seeder-delete": "node seeder.js -delete"
   },
   "keywords": [
     "bootcamp"

@@ -1,8 +1,10 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const connectDb = require('./config/db')
+const expressFileUpload = require('express-fileupload')
 const colors = require('colors')
 const errorHandler = require('./src/middleware/error-handler')
+const path = require('path')
 
 // Route files
 const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
@@ -18,6 +20,12 @@ const app = express()
 
 // Body parser
 app.use(express.json())
+
+// ste static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
+// File uploader middleware
+app.use(expressFileUpload())
 
 // Mount routers
 app.use(MAIN_PREFIX_URL, mainRoute)

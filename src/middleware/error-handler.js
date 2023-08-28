@@ -28,7 +28,7 @@ const errorHandler = (error, request, response, next) => {
   }
 
   response
-    .status(responseCodes.BAD_REQUEST)
+    .status(responseCodes.SUCCESS)
     .json(returnFail(
       errorData.message,
       null,

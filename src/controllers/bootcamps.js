@@ -1,70 +1,18 @@
 const Bootcamp = require('../models/Bootcamp')
 const responseCodes = require('../utils/returnCodes')
-const { returnSuccess, setPaginationData } = require('../utils/returnData')
+const { returnSuccess } = require('../utils/returnData')
 const ErrorResponse = require('../utils/errorResponse')
 const messages = require('../utils/returnMessage')
 const validateFile = require('../utils/fileValidator')
 const asyncHandler = require('../middleware/async-handler')
-const { requestQueryCheck } = require('../utils/requestDataChecker')
 const path = require('path')
-
-// @description      Create request parameters for query
-const getRequestParams = request => {
-  const params = {
-    ...(requestQueryCheck(request, 'id') && {
-      _id: request.query.id
-    }),
-    ...(requestQueryCheck(request, 'name') && {
-      name: new RegExp(request.query.name, 'i')
-    })
-  }
-  return params
-}
 
 // @description      Get all bootcamp list
 // @route            GET /api/bootcamper/admin/bootcamps/v1/query
 const getBootcamps = asyncHandler(async (request, response, next) => {
-  const params = getRequestParams(request)
-
-  let query = Bootcamp.find(params)
-
-  // Select
-  if (request.query.select) {
-    const fields = request.query.select.split(',').join(' ')
-    query = query.select(fields)
-  }
-
-  // Sort
-  if (request.query.sort) {
-    const sortBy = request.query.sort.split(',').join(' ')
-    query = query.sort(sortBy)
-  } else {
-    query = query.sort('-createdAt')
-  }
-
-  // Pagination
-  const pageNum = Number(request.query.pageNum, 10) || 1
-  const pageSize = Number(request.query.pageSize, 10) || 10
-  const startIndex = (pageNum - 1) * pageSize
-  const endIndex = pageNum * pageSize
-  const total = await Bootcamp.countDocuments()
-
-  query = query.skip(startIndex).limit(pageSize)
-
-  const bootcamps = await query
-
-  const returnData = setPaginationData(
-    bootcamps,
-    startIndex,
-    endIndex,
-    total,
-    pageNum,
-    pageSize
-  )
-
   response
     .status(responseCodes.SUCCESS)
-    .json(returnSuccess(messages.OPERATION_SUCCESS, returnData))
+    .json(returnSuccess(messages.OPERATION_SUCCESS, response.returnData))
 })
 
 // @description      Create new bootcamp

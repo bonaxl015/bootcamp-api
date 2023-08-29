@@ -7,8 +7,11 @@ const {
   deleteBootcamp,
   uploadBootcamp
 } = require('../../controllers/bootcamps')
+const paginateResults = require('../../middleware/page-results')
+const getRequestParams = require('../../middleware/bootcamp')
+const Bootcamp = require('../../models/Bootcamp')
 
-router.route('/query').get(getBootcamps)
+router.route('/query').get(getRequestParams, paginateResults(Bootcamp), getBootcamps)
 router.route('/create').post(createBootcamp)
 router.route('/edit').post(updateBootcamp)
 router.route('/delete').post(deleteBootcamp)

@@ -5,23 +5,6 @@ const { returnSuccess } = require('../utils/returnData')
 const ErrorResponse = require('../utils/errorResponse')
 const messages = require('../utils/returnMessage')
 const asyncHandler = require('../middleware/async-handler')
-const { requestQueryCheck } = require('../utils/requestDataChecker')
-
-// @description      Create request parameters for query
-const getRequestParams = request => {
-  const params = {
-    ...(requestQueryCheck(request, 'id') && {
-      _id: request.query.id
-    }),
-    ...(requestQueryCheck(request, 'title') && {
-      title: new RegExp(request.query.title, 'i')
-    }),
-    ...(requestQueryCheck(request, 'bootcampId') && {
-      bootcampId: request.query.bootcampId
-    })
-  }
-  return params
-}
 
 // @description      Get all courses by bootcampId
 // @route            GET /api/bootcamper/admin/courses/v1/query
@@ -29,19 +12,13 @@ const getCourses = asyncHandler(async (request, response, next) => {
   if (!request.query.bootcampId) {
     return next(new ErrorResponse(
       messages.ID_CANNOT_BE_EMPTY,
-      responseCodes.BAD_REQUEST
+      responseCodes.FAIL_REQUEST
     ))
+  } else {
+    response
+      .status(responseCodes.SUCCESS)
+      .json(returnSuccess(messages.OPERATION_SUCCESS, response.returnData))
   }
-
-  const params = getRequestParams(request)
-
-  let query = Course.find(params)
-
-  const courses = await query
-
-  response
-    .status(responseCodes.SUCCESS)
-    .json(returnSuccess(messages.OPERATION_SUCCESS, courses))
 })
 
 // @description      Create new course under given bootcampId

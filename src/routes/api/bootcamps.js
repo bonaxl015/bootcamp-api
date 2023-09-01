@@ -10,11 +10,12 @@ const {
 const paginateResults = require('../../middleware/page-results')
 const getRequestParams = require('../../middleware/bootcamp')
 const Bootcamp = require('../../models/Bootcamp')
+const routeProtect = require('../../middleware/auth')
 
 router.route('/query').get(getRequestParams, paginateResults(Bootcamp), getBootcamps)
-router.route('/create').post(createBootcamp)
-router.route('/edit').post(updateBootcamp)
-router.route('/delete').post(deleteBootcamp)
-router.route('/upload').post(uploadBootcamp)
+router.route('/create').post(routeProtect, createBootcamp)
+router.route('/edit').post(routeProtect, updateBootcamp)
+router.route('/delete').post(routeProtect, deleteBootcamp)
+router.route('/upload').post(routeProtect, uploadBootcamp)
 
 module.exports = router

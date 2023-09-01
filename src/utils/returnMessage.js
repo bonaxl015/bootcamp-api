@@ -7,7 +7,12 @@ const messages = {
   INVALID_ID: 'ID used is invalid',
   EMPTY_UPLOAD_IMAGE: 'Image file cannot be empty',
   UPLOAD_NOT_IMAGE: 'Please upload an image file',
-  UPLOAD_NOT_SUCCESS: 'Upload failed. Try again'
+  UPLOAD_NOT_SUCCESS: 'Upload failed. Try again',
+  EMAIL_CANNOT_BE_EMPTY: 'Email cannot be empty',
+  PASSWORD_CANNOT_BE_EMPTY: 'Password cannot be empty',
+  INVALID_CREDENTIALS: 'Invalid credentials',
+  PASSWORD_NOT_MATCH: 'Password did not match',
+  NOT_AUTHORIZED: 'Not authorized'
 }
 
 module.exports = messages

@@ -5,6 +5,7 @@ const expressFileUpload = require('express-fileupload')
 const colors = require('colors')
 const errorHandler = require('./src/middleware/error-handler')
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
 // Route files
 const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
@@ -20,6 +21,9 @@ const app = express()
 
 // Body parser
 app.use(express.json())
+
+// Cookie parser
+app.use(cookieParser())
 
 // ste static folder
 app.use(express.static(path.join(__dirname, 'public')))

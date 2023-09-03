@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const dayjs = require('dayjs')
 
 const CourseSchema = new mongoose.Schema({
   title: {
@@ -27,12 +28,29 @@ const CourseSchema = new mongoose.Schema({
     default: false
   },
   createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  },
+  createdBy: {
+    type: String,
+    required: [true, 'createdBy cannot be empty']
+  },
+  updatedAt: {
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  },
+  updatedBy: {
+    type: String,
+    required: [true, 'updatedBy cannot be empty']
   },
   bootcampId: {
     type: mongoose.Schema.ObjectId,
     ref: 'Bootcamp',
+    required: true
+  },
+  userId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
     required: true
   }
 })

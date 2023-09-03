@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const { emailPattern } = require('../utils/patterns')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const dayjs = require('dayjs')
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -28,8 +29,12 @@ const UserSchema = new mongoose.Schema({
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  },
+  updatedAt: {
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
   }
 })
 

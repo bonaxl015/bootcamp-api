@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { urlPattern, emailPattern } = require('../utils/patterns')
 const slugify = require('slugify')
+const dayjs = require('dayjs')
 
 const BootcampSchema = new mongoose.Schema({
   name: {
@@ -71,8 +72,25 @@ const BootcampSchema = new mongoose.Schema({
     default: false
   },
   createdAt: {
-    type: Date,
-    default: Date.now
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  },
+  createdBy: {
+    type: String,
+    required: [true, 'createdBy cannot be empty']
+  },
+  updatedAt: {
+    type: String,
+    default: dayjs().format('YYYY-MM-DD HH:mm:ss')
+  },
+  updatedBy: {
+    type: String,
+    required: [true, 'updatedBy cannot be empty']
+  },
+  userId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true
   }
 })
 

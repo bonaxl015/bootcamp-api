@@ -6,6 +6,7 @@ const messages = require('../utils/returnMessage')
 const validateFile = require('../utils/fileValidator')
 const asyncHandler = require('../middleware/async-handler')
 const path = require('path')
+const dayjs = require('dayjs')
 
 // @description      Get all bootcamp list
 // @route            GET /api/bootcamper/admin/bootcamps/v1/query
@@ -18,6 +19,22 @@ const getBootcamps = asyncHandler(async (request, response, next) => {
 // @description      Create new bootcamp
 // @route            POST /api/bootcamper/admin/bootcamps/v1/create
 const createBootcamp = asyncHandler(async (request, response, next) => {
+  // add user to request body
+  request.body.userId = request.user.id
+  request.body.createdBy = request.user.name
+  request.body.updatedBy = request.user.name
+
+  // get all bootcamp created by publisher
+  const publishedBootcamp = await Bootcamp.find({ userId: request.user.id })
+
+  // limit to 5 bootcamps only
+  if (publishedBootcamp?.length >= 6 && request.user.role !== 'admin') {
+    return next(new ErrorResponse(
+      messages.CREATE_LIMIT_REACHED,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
   const bootcamp = await Bootcamp.create(request.body)
   if (!Object.keys(bootcamp).length) {
     return next(new ErrorResponse(
@@ -39,6 +56,10 @@ const updateBootcamp = asyncHandler(async (request, response, next) => {
       responseCodes.FAIL_REQUEST
     ))
   }
+
+  // add updatedBy and updatedAt to request body
+  request.body.updatedBy = request.user.name
+  request.body.updatedAt = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
   const bootcamp = await Bootcamp.findByIdAndUpdate(
     request.body.id,
@@ -136,7 +157,11 @@ const uploadBootcamp = asyncHandler(async (request, response, next) => {
 
     await Bootcamp.findByIdAndUpdate(
       request.body.id,
-      { image: file.name }
+      {
+        image: file.name,
+        updatedBy: request.user.name,
+        updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss')
+      }
     )
 
     response

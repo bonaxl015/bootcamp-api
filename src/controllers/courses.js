@@ -5,6 +5,7 @@ const { returnSuccess } = require('../utils/returnData')
 const ErrorResponse = require('../utils/errorResponse')
 const messages = require('../utils/returnMessage')
 const asyncHandler = require('../middleware/async-handler')
+const dayjs = require('dayjs')
 
 // @description      Get all courses by bootcampId
 // @route            GET /api/bootcamper/admin/courses/v1/query
@@ -40,6 +41,11 @@ const createCourse = asyncHandler(async (request, response, next) => {
     ))
   }
 
+  // add user to request body
+  request.body.userId = request.user.id
+  request.body.createdBy = request.user.name
+  request.body.updatedBy = request.user.name
+
   const newCourse = await Course.create(request.body)
   if (!Object.keys(newCourse).length) {
     return next(new ErrorResponse(
@@ -70,6 +76,10 @@ const updateCourse = asyncHandler(async (request, response, next) => {
       responseCodes.FAIL_REQUEST
     ))
   }
+
+  // add updatedBy and updatedAt to request body
+  request.body.updatedBy = request.user.name
+  request.body.updatedAt = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
   const updateCourse = await Course.findByIdAndUpdate(
     request.body.id,

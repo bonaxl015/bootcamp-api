@@ -31,9 +31,25 @@ const routeProtect = asyncHandler(async (request, response, next) => {
   } catch(error) {
     return next(new ErrorResponse(
       message.NOT_AUTHORIZED,
-      responseCodes.FAIL_REQUEST
+      responseCodes.UNAUTHORIZED
     ))
   }
 })
 
-module.exports = routeProtect
+// Access authorization
+const authorize = (...roles) => {
+  return (request, response, next) => {
+    if (!roles.includes(request.user.role)) {
+      return next(new ErrorResponse(
+        message.NO_PERMISSION,
+        responseCodes.FORBIDDEN
+      ))
+    }
+    next()
+  }
+}
+
+module.exports = {
+  routeProtect,
+  authorize
+}

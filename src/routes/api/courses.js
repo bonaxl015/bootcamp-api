@@ -9,11 +9,35 @@ const {
 const paginateResults = require('../../middleware/page-results')
 const getRequestParams = require('../../middleware/course')
 const Course = require('../../models/Course')
-const routeProtect = require('../../middleware/auth')
+const { routeProtect, authorize } = require('../../middleware/auth')
 
-router.route('/query').get(getRequestParams, paginateResults(Course), getCourses)
-router.route('/create').post(routeProtect, createCourse)
-router.route('/edit').post(routeProtect, updateCourse)
-router.route('/delete').post(routeProtect, deleteCourse)
+router
+  .route('/query')
+  .get(
+    getRequestParams,
+    paginateResults(Course),
+    getCourses
+  )
+router
+  .route('/create')
+  .post(
+    routeProtect,
+    authorize('publisher', 'admin'),
+    createCourse
+  )
+router
+  .route('/edit')
+  .post(
+    routeProtect,
+    authorize('publisher', 'admin'),
+    updateCourse
+  )
+router
+  .route('/delete')
+  .post(
+    routeProtect,
+    authorize('publisher', 'admin'),
+    deleteCourse
+  )
 
 module.exports = router

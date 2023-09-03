@@ -12,7 +12,8 @@ const messages = {
   PASSWORD_CANNOT_BE_EMPTY: 'Password cannot be empty',
   INVALID_CREDENTIALS: 'Invalid credentials',
   PASSWORD_NOT_MATCH: 'Password did not match',
-  NOT_AUTHORIZED: 'Not authorized'
+  NOT_AUTHORIZED: 'Not authorized',
+  NO_PERMISSION: 'No permission to access this feature'
 }
 
 module.exports = messages

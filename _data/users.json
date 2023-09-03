@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "64ef6dff61d58c83e17c03c4",
+    "name": "admin",
+    "email": "admin@bootcamper.com",
+    "password": "qwer1234",
+    "role": "user"
+  },
+  {
+    "_id": "64ef6dff61d58c83e17c03c5",
+    "name": "randy",
+    "email": "randy@bootcamper.com",
+    "password": "qwer1234",
+    "role": "user"
+  },
+  {
+    "_id": "64ef6dff61d58c83e17c03c6",
+    "name": "orton",
+    "email": "orton@bootcamper.com",
+    "password": "qwer1234",
+    "role": "publisher"
+  }
+]

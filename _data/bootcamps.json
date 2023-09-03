@@ -14,7 +14,10 @@
     "email": "customerservice@avionschool.com",
     "address": "BGC, Taguig City",
     "rating": 8,
-    "price": 80000
+    "price": 80000,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4"
   },
   {
     "_id": "63dd2c1f9489e350f0584818",
@@ -31,7 +34,10 @@
     "email": "customerservice@avionschool.com",
     "address": "BGC, Taguig City",
     "rating": 8,
-    "price": 80000
+    "price": 80000,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4"
   },
   {
     "_id": "63dd2c1f9489e350f0584819",
@@ -48,6 +54,9 @@
     "email": "customerservice@avionschool.com",
     "address": "BGC, Taguig City",
     "rating": 8,
-    "price": 80000
+    "price": 80000,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4"
   }
 ]

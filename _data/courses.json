@@ -7,6 +7,9 @@
     "price": "10000",
     "minimumSkill": "beginner",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584817"
   },
   {
@@ -17,6 +20,9 @@
     "price": "10000",
     "minimumSkill": "intermediate",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584817"
   },
   {
@@ -27,6 +33,9 @@
     "price": "10000",
     "minimumSkill": "advance",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584817"
   },
   {
@@ -37,6 +46,9 @@
     "price": "10000",
     "minimumSkill": "intermediate",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584817"
   },
   {
@@ -47,6 +59,9 @@
     "price": "10000",
     "minimumSkill": "advance",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584817"
   },
   {
@@ -57,6 +72,9 @@
     "price": "10000",
     "minimumSkill": "beginner",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584818"
   },
   {
@@ -67,6 +85,9 @@
     "price": "10000",
     "minimumSkill": "intermediate",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584818"
   },
   {
@@ -77,6 +98,9 @@
     "price": "10000",
     "minimumSkill": "advance",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584818"
   },
   {
@@ -87,6 +111,9 @@
     "price": "10000",
     "minimumSkill": "intermediate",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584818"
   },
   {
@@ -97,6 +124,9 @@
     "price": "10000",
     "minimumSkill": "advance",
     "scholarship": true,
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "userId": "64ef6dff61d58c83e17c03c4",
     "bootcampId": "63dd2c1f9489e350f0584818"
   }
 ]

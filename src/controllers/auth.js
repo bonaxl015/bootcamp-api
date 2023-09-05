@@ -6,6 +6,7 @@ const ErrorResponse = require('../utils/errorResponse')
 const messages = require('../utils/returnMessage')
 const { sendEmail } = require('../utils/sendEmail')
 const { MAIN_PREFIX_URL, AUTH_URL } = require('../routes/api-url')
+const crypto = require('crypto')
 
 // @description      Register a new user
 // @route            POST /api/bootcamper/admin/auth/v1/register
@@ -134,6 +135,36 @@ const forgotPassword = asyncHandler(async (request, response, next) => {
   }
 })
 
+// @description      reset password
+// @route            POST /api/bootcamper/admin/auth/v1/resetPassword/:resetToken
+const resetPassword = asyncHandler(async (request, response, next) => {
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(request.params.resetToken)
+    .digest('hex')
+  
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() }
+  })
+
+  if (!user) {
+    return next(new ErrorResponse(
+      messages.INVALID_TOKEN,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
+  // set new password
+  user.password = request.body.password
+  user.resetPasswordToken = undefined
+  user.resetPasswordExpire = undefined
+
+  await user.save()
+
+  sendTokenResponse(user, responseCodes.SUCCESS, response)
+})
+
 // get token and create cookie
 const sendTokenResponse = (user, statusCode, response) => {
   // create token
@@ -159,5 +190,6 @@ module.exports = {
   registerUser,
   loginUser,
   getUserInfo,
-  forgotPassword
+  forgotPassword,
+  resetPassword
 }

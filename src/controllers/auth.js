@@ -4,6 +4,8 @@ const { returnSuccess } = require('../utils/returnData')
 const asyncHandler = require('../middleware/async-handler')
 const ErrorResponse = require('../utils/errorResponse')
 const messages = require('../utils/returnMessage')
+const { sendEmail } = require('../utils/sendEmail')
+const { MAIN_PREFIX_URL, AUTH_URL } = require('../routes/api-url')
 
 // @description      Register a new user
 // @route            POST /api/bootcamper/admin/auth/v1/register
@@ -59,6 +61,79 @@ const loginUser = asyncHandler(async (request, response, next) => {
   sendTokenResponse(user, responseCodes.SUCCESS, response)
 })
 
+// @description      Get current user information
+// @route            POST /api/bootcamper/admin/auth/v1/getUserInfo
+const getUserInfo = asyncHandler(async (request, response, next) => {
+  const { id } = request.user
+
+  if (!id) {
+    return next(new ErrorResponse(
+      messages.ID_CANNOT_BE_EMPTY,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
+  const userInfo = await User.findById(id)
+
+  response
+    .status(responseCodes.SUCCESS)
+    .json(returnSuccess(messages.OPERATION_SUCCESS, userInfo))
+})
+
+// @description      forgot password
+// @route            POST /api/bootcamper/admin/auth/v1/forgotPassword
+const forgotPassword = asyncHandler(async (request, response, next) => {
+  const { email } = request.body
+
+  if (!email) {
+    return next(new ErrorResponse(
+      messages.EMAIL_CANNOT_BE_EMPTY,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
+  const user = await User.findOne({ email })
+
+  if (!user) {
+    return next(new ErrorResponse(
+      messages.USER_NOT_FOUND,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
+  // get reset token
+  const resetToken = user.getResetPasswordToken()
+
+  await user.save({ validateBeforeSave: false })
+
+  // create reset url
+  const resetUrl =
+    `${request.protocol}://${request.get('host')}${MAIN_PREFIX_URL}${AUTH_URL}/resetPassword/${resetToken}`
+  const message = `Please click this link to reset your password ${resetUrl}`
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Reset Your Password',
+      message
+    })
+
+    response
+      .status(responseCodes.SUCCESS)
+      .json(returnSuccess(messages.OPERATION_SUCCESS, null))
+  } catch (error) {
+    console.error(error)
+    user.resetPasswordToken = undefined
+    user.resetPasswordExpire = undefined
+
+    await user.save({ validateBeforeSave: false })
+    return next(new ErrorResponse(
+      messages.UNABLE_PROCESS_REQUEST,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+})
+
 // get token and create cookie
 const sendTokenResponse = (user, statusCode, response) => {
   // create token
@@ -80,27 +155,9 @@ const sendTokenResponse = (user, statusCode, response) => {
     .json(returnSuccess(messages.OPERATION_SUCCESS, token))
 }
 
-// @description      Get current user information
-// @route            POST /api/bootcamper/admin/auth/v1/getUserInfo
-const getUserInfo = asyncHandler(async (request, response, next) => {
-  const { id } = request.user
-
-  if (!id) {
-    return next(new ErrorResponse(
-      messages.ID_CANNOT_BE_EMPTY,
-      responseCodes.FAIL_REQUEST
-    ))
-  }
-
-  const userInfo = await User.findById(id)
-
-  response
-    .status(responseCodes.SUCCESS)
-    .json(returnSuccess(messages.OPERATION_SUCCESS, userInfo))
-})
-
 module.exports = {
   registerUser,
   loginUser,
-  getUserInfo
+  getUserInfo,
+  forgotPassword
 }

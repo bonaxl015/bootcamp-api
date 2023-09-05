@@ -14,7 +14,8 @@ const messages = {
   PASSWORD_NOT_MATCH: 'Password did not match',
   NOT_AUTHORIZED: 'Not authorized',
   NO_PERMISSION: 'No permission to access this feature',
-  CREATE_LIMIT_REACHED: 'Create limit reached'
+  CREATE_LIMIT_REACHED: 'Create limit reached',
+  USER_NOT_FOUND: 'User not found'
 }
 
 module.exports = messages

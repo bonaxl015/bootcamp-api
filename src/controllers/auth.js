@@ -166,8 +166,8 @@ const resetPassword = asyncHandler(async (request, response, next) => {
 })
 
 // @description      update user details
-// @route            POST /api/bootcamper/admin/auth/v1/updateUser
-const updateUser = asyncHandler(async (request, response, next) => {
+// @route            POST /api/bootcamper/admin/auth/v1/updateUserInfo
+const updateUserInfo = asyncHandler(async (request, response, next) => {
   const { name, email } = request.body
   const updateField = { name, email }
 
@@ -237,6 +237,6 @@ module.exports = {
   getUserInfo,
   forgotPassword,
   resetPassword,
-  updateUser,
+  updateUserInfo,
   updatePassword
 }

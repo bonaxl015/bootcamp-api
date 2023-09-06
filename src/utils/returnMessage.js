@@ -16,7 +16,8 @@ const messages = {
   NO_PERMISSION: 'No permission to access this feature',
   CREATE_LIMIT_REACHED: 'Create limit reached',
   USER_NOT_FOUND: 'User not found',
-  INVALID_TOKEN: 'Token is invalid'
+  INVALID_TOKEN: 'Token is invalid',
+  INCORRECT_PASSWORD: 'Password is incorrect'
 }
 
 module.exports = messages

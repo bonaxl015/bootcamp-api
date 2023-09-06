@@ -165,6 +165,51 @@ const resetPassword = asyncHandler(async (request, response, next) => {
   sendTokenResponse(user, responseCodes.SUCCESS, response)
 })
 
+// @description      update user details
+// @route            POST /api/bootcamper/admin/auth/v1/updateUser
+const updateUser = asyncHandler(async (request, response, next) => {
+  const { name, email } = request.body
+  const updateField = { name, email }
+
+  const user = await User.findByIdAndUpdate(
+    request.user.id,
+    updateField,
+    {
+      new: true,
+      runValidators: true
+    }
+  )
+
+  if (!user) {
+    return next(new ErrorResponse(
+      messages.UNABLE_PROCESS_REQUEST,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+
+  response
+    .status(responseCodes.SUCCESS)
+    .json(returnSuccess(messages.OPERATION_SUCCESS, null))
+})
+
+// @description      update password
+// @route            POST /api/bootcamper/admin/auth/v1/updatePassword
+const updatePassword = asyncHandler(async (request, response, next) => {
+  const user = await User.findById(request.user.id).select('+password')
+
+  const isMatch = await user.matchPassword(request.body.currentPassword)
+  if (!isMatch) {
+    return next(new ErrorResponse(
+      messages.INCORRECT_PASSWORD,
+      responseCodes.FAIL_REQUEST
+    ))
+  }
+  user.password = request.body.newPassword
+  await user.save()
+
+  sendTokenResponse(user, responseCodes.SUCCESS, response)
+})
+
 // get token and create cookie
 const sendTokenResponse = (user, statusCode, response) => {
   // create token
@@ -191,5 +236,7 @@ module.exports = {
   loginUser,
   getUserInfo,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  updateUser,
+  updatePassword
 }

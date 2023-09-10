@@ -54,7 +54,7 @@ const createCourse = asyncHandler(async (request, response, next) => {
     ))
   }
   response
-    .status(responseCodes.CREATED)
+    .status(responseCodes.SUCCESS)
     .json(returnSuccess(messages.OPERATION_SUCCESS, null))
 })
 
@@ -93,7 +93,7 @@ const updateCourse = asyncHandler(async (request, response, next) => {
     ))
   }
   response
-    .status(responseCodes.CREATED)
+    .status(responseCodes.SUCCESS)
     .json(returnSuccess(messages.OPERATION_SUCCESS, null))
 })
 

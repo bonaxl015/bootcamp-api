@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "64fc99e95f3d0f1600466346",
+    "title": "Great one!",
+    "content": "I became confident in this bootcamp",
+    "rating": 5,
+    "createdBy": "lancelot",
+    "updatedBy": "lancelot",
+    "userId": "64ef6dff61d58c83e17c03c7",
+    "bootcampId": "63dd2c1f9489e350f0584818"
+  },
+  {
+    "_id": "64fc99e95f3d0f1600466347",
+    "title": "The best",
+    "content": "I learned from the experts",
+    "rating": 3,
+    "createdBy": "randy",
+    "updatedBy": "randy",
+    "userId": "64ef6dff61d58c83e17c03c5",
+    "bootcampId": "63dd2c1f9489e350f0584819"
+  }
+]

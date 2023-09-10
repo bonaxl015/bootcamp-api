@@ -19,5 +19,12 @@
     "email": "orton@bootcamper.com",
     "password": "qwer1234",
     "role": "publisher"
+  },
+  {
+    "_id": "64ef6dff61d58c83e17c03c7",
+    "name": "lancelot",
+    "email": "lancelot@bootcamper.com",
+    "password": "qwer1234",
+    "role": "user"
   }
 ]

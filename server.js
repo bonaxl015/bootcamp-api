@@ -9,6 +9,9 @@ const cookieParser = require('cookie-parser')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const xssClean = require('xss-clean')
+const expressRateLimit = require('express-rate-limit')
+const hpp = require('hpp')
+const cors = require('cors')
 
 // Route files
 const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
@@ -33,6 +36,19 @@ app.use(mongoSanitize())
 
 // Set security headers
 app.use(helmet())
+
+// Rate limit
+const limit = expressRateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100
+})
+app.use(limit)
+
+// Prevent http param pollution
+app.use(hpp())
+
+// Enable CORS
+app.use(cors())
 
 // Prevent cross site scripting attacks
 app.use(xssClean())

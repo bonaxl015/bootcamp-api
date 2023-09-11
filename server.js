@@ -7,6 +7,8 @@ const errorHandler = require('./src/middleware/error-handler')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const mongoSanitize = require('express-mongo-sanitize')
+const helmet = require('helmet')
+const xssClean = require('xss-clean')
 
 // Route files
 const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
@@ -29,7 +31,13 @@ app.use(cookieParser())
 // Sanitize data
 app.use(mongoSanitize())
 
-// ste static folder
+// Set security headers
+app.use(helmet())
+
+// Prevent cross site scripting attacks
+app.use(xssClean())
+
+// Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
 // File uploader middleware

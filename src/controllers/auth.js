@@ -210,6 +210,19 @@ const updatePassword = asyncHandler(async (request, response, next) => {
   sendTokenResponse(user, responseCodes.SUCCESS, response)
 })
 
+// @description      logout user
+// @route            POST /api/bootcamper/admin/auth/v1/logout
+const logoutUser = asyncHandler(async (request, response, next) => {
+  response.cookie('token', '', {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true
+  })
+
+  response
+    .status(responseCodes.SUCCESS)
+    .json(returnSuccess(messages.OPERATION_SUCCESS, null))
+})
+
 // get token and create cookie
 const sendTokenResponse = (user, statusCode, response) => {
   // create token
@@ -238,5 +251,6 @@ module.exports = {
   forgotPassword,
   resetPassword,
   updateUserInfo,
-  updatePassword
+  updatePassword,
+  logoutUser
 }

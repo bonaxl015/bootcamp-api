@@ -6,6 +6,7 @@ const colors = require('colors')
 const errorHandler = require('./src/middleware/error-handler')
 const path = require('path')
 const cookieParser = require('cookie-parser')
+const mongoSanitize = require('express-mongo-sanitize')
 
 // Route files
 const { MAIN_PREFIX_URL } = require('./src/routes/api-url')
@@ -24,6 +25,9 @@ app.use(express.json())
 
 // Cookie parser
 app.use(cookieParser())
+
+// Sanitize data
+app.use(mongoSanitize())
 
 // ste static folder
 app.use(express.static(path.join(__dirname, 'public')))
